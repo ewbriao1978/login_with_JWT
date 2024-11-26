@@ -64,6 +64,16 @@ app.get("/welcome", authenticate, (req, res) => {
   res.json({ message: `Bem-vindo ${req.user.username}` });
 });
 
+
+app.get("/products", authenticate, async (req, res) => {
+    try {
+      const products = await prisma.product.findMany();
+      res.json(products);
+    } catch (err) {
+      res.status(500).json({ error: "Error fetching products" });
+    }
+  });
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

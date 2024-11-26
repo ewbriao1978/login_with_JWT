@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 
 function Welcome() {
@@ -22,7 +22,12 @@ function Welcome() {
     fetchMessage();
   }, [navigate]);
 
-  return <h2>{message}</h2>;
+  return (
+    <div>
+      <h2>{message}</h2>
+      <Link to="/products">Ver Produtos</Link>
+    </div>
+  );
 }
 
 export default Welcome;
